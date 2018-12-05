@@ -1,15 +1,14 @@
 #include QMK_KEYBOARD_H
 
-#define _______ KC_TRNS
-
-enum custom_layers {
+enum hhkb_layers {
     _BASE,
+    _SYMBOL,
     _FUNC,
     _MOUSE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* Layer 0: HHKB JP Base
+    /* Layer: HHKB JP Base
     * ,-----------------------------------------------------------.
     * |Esc|  1|  2|  3|  4|  5|  6|  7|  8|  9| 10|  -|  =| \ |Bsp|
     * |-----------------------------------------------------------|
@@ -23,20 +22,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------'
     */
     [_BASE] = LAYOUT_JP(
-        KC_ESC,            KC_1,          KC_2,    KC_3,    KC_4,               KC_5,   KC_6,                KC_7,    KC_8,    KC_9,      KC_0,                KC_MINS,         KC_EQL,         KC_BSLS, KC_BSPC,
-        KC_TAB,            KC_Q,          KC_W,    KC_E,    KC_R,               KC_T,   KC_Y,                KC_U,    KC_I,    KC_O,      KC_P,                KC_GRV,          KC_LBRC,
-        CTL_T(KC_ESC),     KC_A,          KC_S,    KC_D,    KC_F,               KC_G,   KC_H,                KC_J,    KC_K,    KC_L,      LT(_MOUSE, KC_SCLN), GUI_T(KC_QUOT),  KC_RBRC,        KC_ENT,
-        KC_LSFT,           KC_Z,          KC_X,    KC_C,    KC_V,               KC_B,   KC_N,                KC_M,    KC_COMM, KC_DOT,    KC_SLSH,             KC_BSLS,         RSFT_T(KC_UP),  KC_RSFT,
-        LT(_FUNC, KC_GRV), CTL_T(KC_GRV), KC_LALT, KC_LGUI, LT(_MOUSE, KC_ENT), KC_SPC, LT(_MOUSE, KC_BSPC), KC_RGUI, KC_RALT, MO(_FUNC),                      KC_LEFT,         KC_DOWN,        KC_RGHT
+        KC_ESC,            KC_1,          KC_2,    KC_3,    KC_4,                KC_5,   KC_6,                KC_7,    KC_8,    KC_9,      KC_0,                KC_MINS,         KC_EQL,         KC_BSLS, KC_BSPC,
+        KC_TAB,            KC_Q,          KC_W,    KC_E,    KC_R,                KC_T,   KC_Y,                KC_U,    KC_I,    KC_O,      KC_P,                KC_GRV,          KC_LBRC,
+        CTL_T(KC_ESC),     KC_A,          KC_S,    KC_D,    KC_F,                KC_G,   KC_H,                KC_J,    KC_K,    KC_L,      LT(_MOUSE, KC_SCLN), GUI_T(KC_QUOT),  KC_RBRC,        KC_ENT,
+        KC_LSFT,           KC_Z,          KC_X,    KC_C,    KC_V,                KC_B,   KC_N,                KC_M,    KC_COMM, KC_DOT,    CTL_T(KC_SLSH),      KC_BSLS,         RSFT_T(KC_UP),  KC_RSFT,
+        LT(_FUNC, KC_GRV), CTL_T(KC_GRV), KC_LALT, KC_LGUI, LT(_SYMBOL, KC_SPC), KC_SPC, LT(_SYMBOL, KC_SPC), KC_RGUI, KC_RALT, KC_FN1,                         KC_LEFT,         KC_DOWN,        KC_RGHT
     ),
 
-    /* Layer 1: HHKB Fn Mode
+    /* Layer: Symbol
+    * ,-----------------------------------------------------------.
+    * |   |F1 |F2 |F3 |F4 |F5 |F6 |F7 |F8 |F9 |F10|F11|F12|   |   |
+    * |-----------------------------------------------------------|
+    * |     | ! | @ | # | $ | % | ^ | & | * | ( | ) | _ | + |     |
+    * |------------------------------------------------------`    |
+    * |      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10| - | = |    |
+    * |-----------------------------------------------------------|
+    * |       |   |   |   |   |   |   |   |   |   |   |   |   |   |
+    * |-----------------------------------------------------------|
+    * |   ||   |   |   |   |         |   |   |   |   ||   |   |   |
+    * `-----------------------------------------------------------'
+    */
+    [_SYMBOL] = LAYOUT_JP(
+        KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______,
+        KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS,
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  _______,
+        _______, _______, _______, _______, _______, _______, AG_NORM, AG_SWAP, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______
+    ),
+
+    /* Layer: Fn Mode
     * ,-----------------------------------------------------------.
     * |Pwr| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Ins|Del|
     * |-----------------------------------------------------------|
-    * |Caps |Nor|Swa|   |   |   |   |   |Psc|Slk|Pus|Up |   |     |
+    * |Caps |   |   |   |RST|   |   |   |Psc|Slk|Pus|Up |   |     |
     * |------------------------------------------------------`    |
-    * |      |VoD|VoU|Mut|   |   |  *|  /|Hom|PgU|Lef|Rig|   |    |
+    * |      |VoD|VoU|Mut|Eje|   |  *|  /|Hom|PgU|Lef|Rig|   |    |
     * |-----------------------------------------------------------|
     * |       |   |   |   |   |   |  +|  -|End|PgD|Dow|   |   |   |
     * |-----------------------------------------------------------|
@@ -45,15 +65,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
     [_FUNC] = LAYOUT_JP(
         KC_PWR,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_INS,  KC_DEL,
-        KC_CAPS, AG_NORM, AG_SWAP, _______, _______, _______, _______, _______, KC_PSCR, KC_SLCK, KC_PAUS, KC_UP,   _______,
-        _______, KC_VOLD, KC_VOLU, KC_MUTE, KC_PWR,  _______, KC_PAST, KC_PSLS, KC_HOME, KC_PGUP, KC_LEFT, KC_RGHT, _______, KC_PENT,
+        KC_CAPS, _______, _______, _______, RESET,   _______, _______, _______, KC_PSCR, KC_SLCK, KC_PAUS, KC_UP,   _______,
+        _______, KC_VOLD, KC_VOLU, KC_MUTE, KC_EJCT, _______, KC_PAST, KC_PSLS, KC_HOME, KC_PGUP, KC_LEFT, KC_RGHT, _______, KC_PENT,
         _______, _______, _______, _______, _______, _______, KC_PPLS, KC_PMNS, KC_END,  KC_PGDN, KC_DOWN, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          KC_DEL,  _______, _______
     ),
 
-    /* Layer 2: HHKB Mouse Mode
+    /* Layer: Mouse Mode
     * ,-----------------------------------------------------------.
-    * |   | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|   |   |
+    * |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
     * |-----------------------------------------------------------|
     * |     |   |Mcl|MU |Rcl|   |   |Rcl|WU |Mcl|   |   |   |     |
     * |------------------------------------------------------`    |
@@ -65,31 +85,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * `-----------------------------------------------------------'
     */
     [_MOUSE] = LAYOUT_JP(
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11, KC_F12,  _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, KC_BTN3, KC_MS_U, KC_BTN2, _______, _______, KC_BTN2, KC_WH_U, KC_BTN3, _______, _______, _______,
         _______, KC_BTN1, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, KC_BTN1, KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______
     ),
-
-    /* Layer 3: Mouse
-    * ,-----------------------------------------------------------.
-    * |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
-    * |-----------------------------------------------------------|
-    * |     |   |   |   |   |   |   |   |   |   |   |   |   |     |
-    * |------------------------------------------------------`    |
-    * |      |   |   |   |   |   |   |   |   |   |   |   |   |    |
-    * |-----------------------------------------------------------|
-    * |       |   |   |   |   |   |   |   |   |   |   |   |   |   |
-    * |-----------------------------------------------------------|
-    * |   ||   |   |   |   |         |   |   |   |   ||   |   |   |
-    * `-----------------------------------------------------------'
-    */
 };
 
-const macro_t* action_get_macro(keyrecord_t* record, uint8_t macro_id, uint8_t opt) {
-    return MACRO_NONE;
-}
-
 const uint16_t PROGMEM fn_actions[] = {
+    [1] = ACTION_LAYER_TOGGLE(_MOUSE),
 };
