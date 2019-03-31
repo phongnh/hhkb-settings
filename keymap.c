@@ -12,7 +12,6 @@ enum hhkb_layers {
 #define CTL_GRV   CTL_T(KC_GRV)
 #define CTL_Z     CTL_T(KC_Z)
 #define CTL_SLS   CTL_T(KC_SLSH)
-#define CTL_DWN   CTL_T(KC_DOWN)
 #define GUI_QUO   GUI_T(KC_QUOT)
 #define SFT_UP    RSFT_T(KC_UP)
 #define MOU_SCL   LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped
@@ -59,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_LOWER] = LAYOUT_JP(
         KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS, KC_PIPE, KC_DEL,
-        _______, _______, KC_MS_U, KC_BTN3, KC_BTN2, _______, _______, KC_BTN2, KC_WH_U, KC_BTN3, _______, _______, _______,
-        _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, _______, KC_BTN1, KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, AG_NORM, AG_SWAP, _______, _______, _______, _______, _______, RESET,
+        _______, XXXXXXX, KC_MS_U, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_BTN2, KC_WH_U, KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, XXXXXXX, KC_BTN1, KC_WH_L, KC_WH_D, KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, RESET,
         _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -80,9 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_RAISE] = LAYOUT_JP(
         KC_PWR,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_INS,  KC_DEL,
-        KC_CAPS, _______, _______, _______, RESET,   _______, _______, _______, KC_PSCR, KC_SLCK, KC_PAUS, KC_UP,   _______,
-        _______, KC_VOLD, KC_VOLU, KC_MUTE, KC_EJCT, _______, KC_PAST, KC_PSLS, KC_HOME, KC_PGUP, KC_LEFT, KC_RGHT, _______, KC_PENT,
-        _______, _______, _______, _______, _______, _______, KC_PPLS, KC_PMNS, KC_END,  KC_PGDN, CTL_DWN, _______, _______, _______,
+        KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, RESET,   XXXXXXX, XXXXXXX, XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS, KC_UP,   XXXXXXX,
+        _______, KC_VOLD, KC_VOLU, KC_MUTE, KC_EJCT, XXXXXXX, KC_PAST, KC_PSLS, KC_HOME, KC_PGUP, KC_LEFT, KC_RGHT, XXXXXXX, KC_PENT,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PPLS, KC_PMNS, KC_END,  KC_PGDN, KC_DOWN, XXXXXXX, _______, _______,
         _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -100,10 +99,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `--------------------------------------------------------------------------------------------------------'
      */
     [_MOUSE] = LAYOUT_JP(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, KC_BTN3, KC_MS_U, KC_BTN2, _______, _______, KC_BTN2, KC_WH_U, KC_BTN3, _______, _______, _______,
-        _______, KC_BTN1, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, KC_BTN1, KC_WH_L, KC_WH_D, KC_WH_R, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______, _______, _______
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_BTN3, KC_MS_U, KC_BTN2, XXXXXXX, XXXXXXX, KC_BTN2, KC_WH_U, KC_BTN3, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, KC_BTN1, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN1, KC_BTN1, KC_WH_L, KC_WH_D, KC_WH_R, _______, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     _______,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 };
