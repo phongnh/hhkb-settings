@@ -17,9 +17,7 @@ enum hhkb_layers {
 #define LWR_SPC   LT(_LOWER, KC_SPC)      // Turn on _LOWER layer when held, Space when tapped
 #define RSE_GRV   LT(_RAISE, KC_GRV)      // Turn on _RAISE layer when held, ` when tapped
 #define RSE_BSP   LT(_RAISE, KC_BSPC)     // Turn on _RAISE layer when held, Backspace when tapped
-#define RSE_BSL   LT(_RAISE, KC_BSLS)     // Turn on _RAISE layer when held, Backslash when tapped
-#define SAV_PIC   LSFT(LGUI(KC_4))        // Shift+Command+4: Save picture of selected area to the clipboard (macOS only)
-#define COP_PIC   LCTL(LSFT(LGUI(KC_4)))  // Ctrl+Shift+Command+4: Copy picture of selected area to the clipboard (macOS only)
+#define RSE_DEL   LT(_RAISE, KC_DEL)      // Turn on _RAISE layer when held, Del when tapped
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
@@ -30,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------------------------------------------, Enter  |
      * | Ctrl      |  A   |  S   |  D   |  F   |  G   |  H   |  J   |  K   |  L   |  ;   |  '   |  `   |        |
      * |--------------------------------------------------------------------------------------------------------|
-     * | Shift       |  Z   |  X   |  C   |  V   |  B   |  N   |  M   |  ,   |  .   |  /   |  \   |  Up  | Shift|
+     * | Shift       |  Z   |  X   |  C   |  V   |  B   |  N   |  M   |  ,   |  .   |  /   | Shift|  Up  | Del  |
      * |--------------------------------------------------------------------------------------------------------|
      * | Fn   ||| Ctrl| ALt  | Cmd  | Lower|                 | Raise| Cmd  | Alt  | MOUSE||| Left | Down | Right|
      * `--------------------------------------------------------------------------------------------------------'
@@ -39,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS, KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,
         CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,    KC_K,    KC_L,    MOU_SCL, GUI_QUO, KC_GRV,  KC_ENT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT, KC_UP,   RSE_BSL,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT, KC_UP,   RSE_DEL,
         RSE_GRV, CTL_GRV, KC_LALT, KC_LGUI, LWR_SPC,     KC_SPC,      RSE_BSP, KC_RGUI, KC_RALT, MOUSE,   KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
@@ -47,11 +45,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,--------------------------------------------------------------------------------------------------------.
      * | ~    |  !   |  @   |  #   |  $   |  %   |  ^   |  &   |  *   |  (   |  )   |  _   |  +   |  |   | Del  |
      * |--------------------------------------------------------------------------------------------------------|
-     * |         |      |      |      |      |      |      |      |      |      |      |      |      |          |
+     * |         |      | MS_U |MClick|RClick|      |      |RClick| WH_U |MClick|      |      |      |          |
      * |-----------------------------------------------------------------------------------------------,        |
-     * |           |      |      |      |      |      |      |      |      |      |      |      |      |        |
+     * |           | MS_L | MS_D | MS_R |LClick|      |LClick| WH_L | WH_D | WH_R |      |      |      |        |
      * |--------------------------------------------------------------------------------------------------------|
-     * |             |      |      |      |      |      |      |      |      |      |      |      |      |      |
+     * |             |      |      |      |      |      |AGnorm|AGswap|      |      |      |      |      | Reset|
      * |--------------------------------------------------------------------------------------------------------|
      * |      |||     |      |      |      |                 |      |      |      |      |||      |      |      |
      * `--------------------------------------------------------------------------------------------------------'
